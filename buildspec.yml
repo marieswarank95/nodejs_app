@@ -18,7 +18,7 @@ phases:
       - docker build -t express .
       # tagging docker images
       - echo "tagging docker image"
-      - docker tag express/latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - docker tag express:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
     commands:
       # pushing docker image into ECR repo

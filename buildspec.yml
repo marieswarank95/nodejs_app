@@ -1,0 +1,26 @@
+version: 0.2
+env:
+  variables:
+    ACCOUNT_ID = "795552955118"
+phases:
+  pre_build:
+    commands:
+      # ECR login command
+      - echo "ecr public repo login"
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr
+      # ECR login
+      - echo "ecr private repo login"
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express
+  build:
+    commands:
+      # docker image build process
+      - echo "building docker image"
+      - docker build -t express .
+      # tagging docker images
+      - echo "tagging docker image"
+      - docker tag express/latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION
+  post_build:
+    commands:
+      # pushing docker image into ECR repo
+      - echo "pushing the builded docker image into ecr repo"
+      - docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION

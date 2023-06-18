@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    ACCOUNT_ID = "795552955118"
+    ACCOUNT_ID: "795552955118"
 phases:
   pre_build:
     commands:

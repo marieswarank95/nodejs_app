@@ -25,7 +25,7 @@ phases:
       - echo "pushing the builded docker image into ecr repo"
       - docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - printf '[{"name":"express", "imageUri":%s}]' "$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/express:$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
-      - cat imagesdefinitions.json
+      - cat imagedefinitions.json
 artifacts:
    files:
      - imagedefinitions.json

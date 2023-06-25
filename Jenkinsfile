@@ -16,13 +16,13 @@ pipeline {
             }
         }
         stage ("docker image upload") {
-            stpes {
+            steps {
                 sh '''echo $DOCKER_HUB_CREDENTIALS_PSW | docker login --username $DOCKER_HUB_CREDENTIALS_USR --password-stdin
                 docker  push marieswaran/python:${BUILD_NUMBER}'''
             }
         }
         stage ("clean up") {
-            stpes {
+            steps {
                 sh 'docker rmi marieswaran/python:${BUILD_NUMBER}'
             }
         }

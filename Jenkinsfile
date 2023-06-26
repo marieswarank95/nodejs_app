@@ -26,5 +26,10 @@ pipeline {
                 sh 'docker rmi marieswaran/python:${BUILD_NUMBER}'
             }
         }
+        stage ("ECS deployment") {
+            steps {
+                sh 'sh ecs-service-deployment.sh'
+            }
+        }
     }
 }

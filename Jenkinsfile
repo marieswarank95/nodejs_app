@@ -12,18 +12,18 @@ pipeline {
         stage ("Build") {
             steps {
                 sh '''echo "Building docker image"
-                docker build -t marieswaran/python:${BUILD_NUMBER} .'''
+                docker build -t marieswaran/nodejs-app:$v_{BUILD_NUMBER} .'''
             }
         }
         stage ("docker image upload") {
             steps {
                 sh '''echo $DOCKER_HUB_CREDENTIALS_PSW | docker login --username $DOCKER_HUB_CREDENTIALS_USR --password-stdin
-                docker  push marieswaran/python:${BUILD_NUMBER}'''
+                docker  push marieswaran/nodejs-app:v_${BUILD_NUMBER}'''
             }
         }
         stage ("clean up") {
             steps {
-                sh 'docker rmi marieswaran/python:${BUILD_NUMBER}'
+                sh 'docker rmi marieswaran/nodejs-app:$v_{BUILD_NUMBER}'
             }
         }
         stage ("ECS deployment") {

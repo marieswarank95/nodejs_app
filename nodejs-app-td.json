@@ -3,8 +3,7 @@
     "containerDefinitions": [
         {
             "name": "nodejs",
-            "image": "docker.io/marieswaran/nodejs-app:%BUILD_NUMBER%",
-            "cpu": 0,
+            "image": "docker.io/marieswaran/nodejs-app:v_%BUILD_NUMBER%",
             "portMappings": [
                 {
                     "name": "nodejs-80-tcp",
@@ -15,31 +14,9 @@
                 }
             ],
             "essential": true,
-            "environment": [],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "ulimits": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/nodejs-app-task-definition",
-                    "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            }
+            "cpu": "256",
+            "memory": "512"
         }
-    ],
-    "executionRoleArn": "arn:aws:iam::795552955118:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "256",
-    "memory": "512",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    }
+    ]
 }
+

@@ -12,7 +12,7 @@ pipeline {
         stage ("Build") {
             steps {
                 sh '''echo "Building docker image"
-                docker build -t marieswaran/nodejs-app:$v_{BUILD_NUMBER} .'''
+                docker build -t marieswaran/nodejs-app:v_${BUILD_NUMBER} .'''
             }
         }
         stage ("docker image upload") {
@@ -23,7 +23,7 @@ pipeline {
         }
         stage ("clean up") {
             steps {
-                sh 'docker rmi marieswaran/nodejs-app:$v_{BUILD_NUMBER}'
+                sh 'docker rmi marieswaran/nodejs-app:v_${BUILD_NUMBER}'
             }
         }
         stage ("ECS deployment") {

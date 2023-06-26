@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "nodejs",
-            "image": "docker.io/marieswaran/nodejs-app:1",
+            "image": "docker.io/marieswaran/nodejs-app:%BUILD_NUMBER%",
             "cpu": 0,
             "portMappings": [
                 {

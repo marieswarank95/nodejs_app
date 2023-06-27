@@ -17,7 +17,8 @@ echo ${TEST1}
 echo ${TEST2}
 echo ${TEST3}
 echo ${TEST4}
-TASK_REVISION=`aws ecs describe-task-definition --task-definition nodejs-app-task-definition | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
+#TASK_REVISION=`aws ecs describe-task-definition --task-definition nodejs-app-task-definition | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
+TASK_REVISION=`aws ecs describe-task-definition --task-definition nodejs-app-task-definition | egrep "revision" | awk '{print $2}'`
 echo "latest task definition revision is ${TASK_REVISION}"
 #DESIRED_COUNT=`aws ecs describe-services --services ${SERVICE_NAME} | egrep "desiredCount" | tr "/" " " | awk '{print $2}' | sed 's/,$//'`
 #if [ ${DESIRED_COUNT} = "0" ]; then

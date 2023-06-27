@@ -28,7 +28,7 @@ pipeline {
         }
         stage ("ECS deployment") {
             steps {
-                sh 'sh ecs-service-deployment.sh'
+                sh 'sh ecs-service-deployment-tset.sh'
             }
         }
     }
